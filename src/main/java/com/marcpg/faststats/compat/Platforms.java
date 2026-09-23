@@ -14,7 +14,7 @@ public enum Platforms {
     Platforms(String name, String checkedClass) {
         this.name = name;
         this.checkedClass = checkedClass;
-        this.implementation = BASE_PACKAGE + name + "Compat";
+        this.implementation = BASE_PACKAGE + "." + name + "Compat";
     }
 
     public boolean isAvailable() {
