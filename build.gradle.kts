@@ -17,6 +17,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 repositories {
     mavenCentral()
 
+    maven("https://maven.fabricmc.net/")
     maven("https://repo.faststats.dev/releases")
 }
 
@@ -34,6 +35,8 @@ dependencies {
     childJars(libs.faststats.config)
 
     minecraft(libs.minecraft)
+
+    compileOnly(libs.bundles.fabric)
 }
 
 tasks {
@@ -48,6 +51,11 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         dependsOn(childJars)
         from(childJars.map(::zipTree))
+    }
+    processResources {
+        filesMatching(listOf("fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml")) {
+            expand("version" to project.version)
+        }
     }
 }
 

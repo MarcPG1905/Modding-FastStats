@@ -1,9 +1,9 @@
 package com.marcpg.faststats.compat;
 
 public enum Platforms {
-    FABRIC("Fabric", ""), // TODO: Set checked classes!
-    FORGE("Forge", ""),
-    NEOFORGE("NeoForge", "");
+    FABRIC("Fabric", "net.fabricmc.loader.api.FabricLoader"),
+    FORGE("Forge", "net.minecraftforge.fml.ModLoader"),
+    NEOFORGE("NeoForge", "net.neoforged.neoforge.common.NeoForge");
 
     private static final String BASE_PACKAGE = "com.marcpg.faststats.compat.implementations";
 

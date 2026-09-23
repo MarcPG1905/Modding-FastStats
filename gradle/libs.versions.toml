@@ -1,4 +1,6 @@
 [versions]
+fabric-api = "0.158.0+26.2"
+fabric-loader = "0.19.3"
 faststats = "0.30.1"
 loom = "1.17-SNAPSHOT"
 minecraft = "26.2"
@@ -7,6 +9,11 @@ minecraft = "26.2"
 loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }
 
 [libraries]
+fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api" }
+fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
 faststats-config = { module = "dev.faststats.metrics:config", version.ref = "faststats" }
 faststats-core = { module = "dev.faststats.metrics:core", version.ref = "faststats" }
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+
+[bundles]
+fabric = [ "fabric-api", "fabric-loader" ]
