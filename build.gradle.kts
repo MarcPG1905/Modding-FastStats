@@ -1,0 +1,60 @@
+@file:Suppress("AvoidDuplicateDependencies")
+
+plugins {
+    id("java-library")
+    id("maven-publish")
+
+    alias(libs.plugins.loom)
+}
+
+group = "com.marcpg.faststats"
+val artifact = "modding-faststats"
+version = libs.versions.faststats.get()
+description = "Wrapper for faststats-java that automatically works with the major modding platforms and versions."
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+repositories {
+    mavenCentral()
+
+    maven("https://repo.faststats.dev/releases")
+}
+
+val childJars = configurations.create("childJars") {
+    isCanBeConsumed = false
+    isCanBeResolved = true
+    isTransitive = false
+}
+
+dependencies {
+    compileOnlyApi(libs.faststats.core)
+    compileOnly(libs.faststats.config)
+
+    childJars(libs.faststats.core)
+    childJars(libs.faststats.config)
+
+    minecraft(libs.minecraft)
+}
+
+tasks {
+    build {
+        dependsOn(jar)
+    }
+    withType<AbstractPublishToMaven> {
+        dependsOn(jar)
+    }
+    jar {
+        archiveBaseName = artifact
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        dependsOn(childJars)
+        from(childJars.map(::zipTree))
+    }
+}
+
+publishing.publications.create<MavenPublication>("maven") {
+    from(project.components["java"])
+
+    groupId = project.group.toString()
+    artifactId = artifact
+    version = project.version.toString()
+}
