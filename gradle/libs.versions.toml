@@ -2,6 +2,8 @@
 fabric-api = "0.158.0+26.2"
 fabric-loader = "0.19.3"
 faststats = "0.30.1"
+forge = "26.2-65.1.3"
+forge-eventbus = "6.0.5"
 loom = "1.17-SNAPSHOT"
 minecraft = "26.2"
 neoforge = "26.2.0.75"
@@ -16,6 +18,10 @@ fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fab
 fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
 faststats-config = { module = "dev.faststats.metrics:config", version.ref = "faststats" }
 faststats-core = { module = "dev.faststats.metrics:core", version.ref = "faststats" }
+#forge = { module = "net.minecraftforge:forge", version.ref = "forge" }
+forge-eventbus = { module = "net.minecraftforge:eventbus", version.ref = "forge-eventbus" }
+forge-fml-core = { module = "net.minecraftforge:fmlcore", version.ref = "forge" }
+forge-fml-loader = { module = "net.minecraftforge:fmlloader", version.ref = "forge" }
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 neoforge = { module = "net.neoforged:neoforge", version.ref = "neoforge" }
 neoforge-bus = { module = "net.neoforged:bus", version.ref = "neoforge-bus" }
@@ -23,4 +29,5 @@ neoforge-fml = { module = "net.neoforged.fancymodloader:loader", version.ref = "
 
 [bundles]
 fabric = [ "fabric-api", "fabric-loader" ]
+forge = [ "forge-eventbus", "forge-fml-core", "forge-fml-loader" ]
 neoforge = [ "neoforge", "neoforge-bus", "neoforge-fml" ]

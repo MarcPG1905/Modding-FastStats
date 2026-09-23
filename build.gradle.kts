@@ -18,6 +18,7 @@ repositories {
     mavenCentral()
 
     maven("https://maven.fabricmc.net/")
+    maven("https://maven.minecraftforge.net")
     maven("https://maven.neoforged.net/releases/")
     maven("https://repo.faststats.dev/releases")
 }
@@ -38,6 +39,7 @@ dependencies {
     minecraft(libs.minecraft)
 
     compileOnly(libs.bundles.fabric)
+    compileOnly(libs.bundles.forge)
     compileOnly(libs.bundles.neoforge)
 }
 

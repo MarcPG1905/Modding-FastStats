@@ -1,0 +1,10 @@
+{
+  "pack": {
+    "pack_format": 107,
+    "description": "FastStats",
+    "supported_formats": {
+      "min_inclusive": 26,
+      "max_inclusive": 107
+    }
+  }
+}
