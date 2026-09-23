@@ -27,6 +27,11 @@ final class ModMetrics extends SimpleMetrics {
         metrics.addProperty("server_type", PlatformManager.platform().name + (compat.isClient() ? " Client" : ""));
     }
 
+    @Override
+    public boolean isClientApplication() {
+        return PlatformManager.compat().isClient();
+    }
+
     public static final class Factory extends SimpleMetrics.Factory {
         Factory(SimpleContext context, String modId) {
             super(context);
