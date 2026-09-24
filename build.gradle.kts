@@ -30,7 +30,7 @@ val childJars = configurations.create("childJars") {
 }
 
 dependencies {
-    compileOnlyApi(libs.faststats.core)
+    compileOnly(libs.faststats.core)
     compileOnly(libs.faststats.config)
 
     childJars(libs.faststats.core)
