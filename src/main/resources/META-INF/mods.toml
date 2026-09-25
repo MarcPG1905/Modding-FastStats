@@ -1,13 +1,29 @@
 modLoader = "javafml"
 loaderVersion = "[1,)"
 license = "MIT"
-issueTrackerURL = "https://github.com/faststats-dev/faststats-java/issues"
+issueTrackerURL = "${modGitHubUrl}/issues"
 
 [[mods]]
-modId = "faststats"
-version = "${version}"
-displayName = "FastStats"
-description = '''Analytics for developers'''
-logoFile = "faststats.png"
-authors = "David | NonSwag | MarcPG"
+modId = "${modId}"
+version = "${modVersion}"
+displayName = "${modName}"
 displayURL = "https://faststats.dev/mods"
+authors = "MarcPG, David, NonSwag"
+description = '''${modDescription}'''
+
+logoFile = "faststats.png"
+logoBlur = true
+
+[[dependencies.${modId}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modId}]]
+modId = "forge"
+mandatory = true
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"

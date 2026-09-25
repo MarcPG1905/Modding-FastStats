@@ -1,25 +1,33 @@
 {
   "schemaVersion": 1,
-  "id": "faststats",
-  "version": "$version",
-  "name": "FastStats",
-  "description": "Analytics for developers",
-  "contact": {
-    "email": "mail@faststats.dev",
-    "homepage": "https://faststats.dev/mods",
-    "sources": "https://github.com/faststats-dev/faststats-java",
-    "issues": "https://github.com/faststats-dev/faststats-java/issues"
-  },
+  "id": "${modId}",
+  "version": "${modVersion}",
+
+  "name": "${modName}",
+  "description": "${modDescription}",
+  "authors": [ "MarcPG", "David", "NonSwag" ],
   "icon": "faststats.png",
   "license": "MIT",
-  "authors": [
-    "David | NonSwag",
-    "MarcPG"
-  ],
+
+  "contact": {
+    "homepage": "https://faststats.dev/mods",
+    "sources": "${modGitHubUrl}",
+    "issues": "${modGitHubUrl}/issues"
+  },
+
   "environment": "*",
+
   "depends": {
-    "fabricloader": "*",
     "minecraft": "*",
+    "fabricloader": "*",
     "fabric-api": "*"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/HxeRppSSvg"
+      }
+    }
   }
 }

@@ -8,9 +8,15 @@ plugins {
 }
 
 group = "com.marcpg.faststats"
-val artifact = "modding-faststats"
+val artifact = "modding"
 version = libs.versions.faststats.get()
 description = "Wrapper for faststats-java that automatically works with the major modding platforms and versions."
+
+extra["modId"] = "modding_faststats"
+extra["modName"] = "Modding FastStats"
+extra["modVersion"] = libs.versions.faststats.get()
+extra["modDescription"] = "Analytics for developers - modified version with improvements for modding."
+extra["modGitHubUrl"] = "https://github.com/MarcPG1905/Modding-FastStats"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
@@ -57,8 +63,10 @@ tasks {
         from(childJars.map(::zipTree))
     }
     processResources {
-        filesMatching(listOf("fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml")) {
-            expand("version" to project.version)
+        val properties = rootProject.extra.properties.mapValues { it.value.toString() }
+        inputs.properties(properties)
+        filesMatching(listOf("fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml", "pack.mcmeta")) {
+            expand(properties)
         }
     }
 }
