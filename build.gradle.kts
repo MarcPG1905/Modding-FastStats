@@ -60,7 +60,10 @@ tasks {
         archiveBaseName = artifact
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         dependsOn(childJars)
-        from(childJars.map(::zipTree))
+        from(childJars.map(::zipTree)) {
+            exclude("module-info.class")
+            exclude("META-INF/versions/**/module-info.class")
+        }
     }
     processResources {
         val properties = rootProject.extra.properties.mapValues { it.value.toString() }
