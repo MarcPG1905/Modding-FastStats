@@ -3,8 +3,10 @@
     "pack_format": 107,
     "description": "${modName}",
     "supported_formats": {
-      "min_inclusive": 26,
+      "min_inclusive": 4,
       "max_inclusive": 107
-    }
+    },
+    "min_format": [4, 0],
+    "max_format": [107, 1]
   }
 }

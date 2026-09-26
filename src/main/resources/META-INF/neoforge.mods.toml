@@ -1,5 +1,3 @@
-modLoader = "lowcodefml"
-loaderVersion = "[1,)"
 license = "MIT"
 issueTrackerURL = "${modGitHubUrl}/issues"
 
