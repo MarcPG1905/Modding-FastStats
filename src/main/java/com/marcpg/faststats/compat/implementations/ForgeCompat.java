@@ -2,10 +2,8 @@ package com.marcpg.faststats.compat.implementations;
 
 import com.marcpg.faststats.compat.Compat;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.Nullable;
@@ -14,6 +12,8 @@ public class ForgeCompat extends Compat {
     private @Nullable MinecraftServer server = null;
 
     public ForgeCompat(String modId) {
+        super();
+
         this.platformVersion = ModList.getModContainerById("forge")
                 .map(container -> container.getModInfo().getVersion().toString())
                 .orElse("unknown");
@@ -23,14 +23,12 @@ public class ForgeCompat extends Compat {
         this.modName = mod.getModInfo().getDisplayName();
         this.modVersion = mod.getModInfo().getVersion().toString();
 
-        this.isClient = FMLLoader.getDist() == Dist.CLIENT;
-
         if (!this.isClient)
             waitForServer(() -> this.server = ServerLifecycleHooks.getCurrentServer());
     }
 
     @Override
-    protected MinecraftServer server() {
+    public MinecraftServer server() {
         assert server != null : "Server not initialized";
         return server;
     }

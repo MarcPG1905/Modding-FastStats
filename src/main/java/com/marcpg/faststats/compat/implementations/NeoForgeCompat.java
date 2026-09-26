@@ -2,10 +2,8 @@ package com.marcpg.faststats.compat.implementations;
 
 import com.marcpg.faststats.compat.Compat;
 import net.minecraft.server.MinecraftServer;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.event.lifecycle.ClientStoppingEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -17,6 +15,8 @@ public class NeoForgeCompat extends Compat {
     private @Nullable MinecraftServer server = null;
 
     public NeoForgeCompat(String modId) {
+        super();
+
         this.platformVersion = ModList.get().getModContainerById("neoforge")
                 .map(container -> container.getModInfo().getVersion().toString())
                 .orElse("unknown");
@@ -26,14 +26,12 @@ public class NeoForgeCompat extends Compat {
         this.modName = mod.getModInfo().getDisplayName();
         this.modVersion = mod.getModInfo().getVersion().toString();
 
-        this.isClient = FMLLoader.getDist() == Dist.CLIENT;
-
         if (!this.isClient)
             NeoForge.EVENT_BUS.addListener((ServerStartedEvent event) -> this.server = event.getServer());
     }
 
     @Override
-    protected MinecraftServer server() {
+    public MinecraftServer server() {
         assert server != null : "Server not initialized";
         return server;
     }

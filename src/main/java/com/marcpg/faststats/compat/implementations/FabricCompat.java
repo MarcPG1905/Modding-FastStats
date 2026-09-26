@@ -1,7 +1,6 @@
 package com.marcpg.faststats.compat.implementations;
 
 import com.marcpg.faststats.compat.Compat;
-import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -13,6 +12,8 @@ public class FabricCompat extends Compat {
     private @Nullable MinecraftServer server = null;
 
     public FabricCompat(String modId) {
+        super();
+
         FabricLoader loader = FabricLoader.getInstance();
 
         // noinspection SpellCheckingInspection - because of "fabricloader"
@@ -25,14 +26,12 @@ public class FabricCompat extends Compat {
         this.modName = mod.getMetadata().getName();
         this.modVersion = mod.getMetadata().getVersion().getFriendlyString();
 
-        this.isClient = FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
-
         if (!this.isClient)
             ServerLifecycleEvents.SERVER_STARTING.register(server -> this.server = server);
     }
 
     @Override
-    protected MinecraftServer server() {
+    public MinecraftServer server() {
         assert server != null : "Server not initialized";
         return server;
     }
